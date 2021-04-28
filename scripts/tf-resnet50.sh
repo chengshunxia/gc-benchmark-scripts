@@ -40,4 +40,4 @@ if [ $? -ne 0 ] ;then
   printf "Can't install python dependencise\n"
   exit 1
 fi
-python3 train.py --config mk2_resnet50_bn_16ipus --data-dir ${_data_dir}--no-validation
+python3 train.py --config mk2_resnet50_bn_16ipus --data-dir ${_data_dir} --no-validation
