@@ -1,14 +1,50 @@
 this repo contain following 
 
 
+Synthetic resnet50 with tf:
+  docker run                        \
+  -it                               \
+  --rm                              \
+  --privileged                      \
+  --net=host                        \
+  --shm-size=1g 		    \
+  --ulimit memlock=-1 	            \
+  --ulimit stack=67108864           \
+  -v $(pwd)/examples:/examples      \
+  -v /etc/ipuof.conf.d:/etc/ipuof.conf.d                                \
+  -v /tmp/gc-benchmark-scripts:/gc-benchmark-scripts                    \
+  -v /localdata/ai-datasets/imagenet:/localdata/ai-datasets/imagenet    \
+  graphcore/tensorflow:1-amd-2.0.0					\
+  /bin/bash /gc-benchmark-scripts/scripts/tf-resnet50-synthetic.sh /examples
 
-Synthetic resnet50:
-  docker run -it --rm --privileged --net=host -v /root/examples:/examples -v /etc/ipuof.conf.d:/etc/ipuof.conf.d -v /tmp/gc-benchmark-scripts:/gc-benchmark-scripts graphcore/tensorflow:1-amd-2.0.0 /bin/bash /gc-benchmark-scripts/scripts/tf-resnet50-synthetic.sh /examples   
-
-
-
+Synthetic bert base with pytorch:
+  docker run                        \
+  -it                          	    \
+  --rm                              \
+  --privileged                      \
+  --net=host                        \
+  --shm-size=1g 		    \
+  --ulimit memlock=-1 	            \
+  --ulimit stack=67108864           \
+  -v $(pwd)/examples:/examples      \
+  -v /etc/ipuof.conf.d:/etc/ipuof.conf.d                                \
+  -v /tmp/gc-benchmark-scripts:/gc-benchmark-scripts                    \
+  -v /localdata/ai-datasets/imagenet:/localdata/ai-datasets/imagenet    \
+  graphcore/pytorch:2.0.0                                               \
+  /bin/bash /gc-benchmark-scripts/scripts/pytorch-bert-base-synthetic.sh /examples
 
 Real dataset resnet50:
-  docker run -it --rm --privileged --net=host -v /root/examples:/examples -v /etc/ipuof.conf.d:/etc/ipuof.conf.d -v /tmp/gc-benchmark-scripts:/gc-benchmark-scripts -v /localdata/ai-datasets/imagenet:/localdata/ai-datasets/imagenet graphcore/tensorflow:1-amd-2.0.0 /bin/bash /gc-benchmark-scripts/scripts/tf-resnet50.sh /examples /localdata/ai-datasets/imagenet
-
-
+  docker run                        \
+  -it                               \
+  --rm                              \
+  --privileged                      \
+  --net=host                        \
+  --shm-size=1g 		    \
+  --ulimit memlock=-1 	            \
+  --ulimit stack=67108864           \
+  -v $(pwd)/examples:/examples      \
+  -v /etc/ipuof.conf.d:/etc/ipuof.conf.d                                \
+  -v /tmp/gc-benchmark-scripts:/gc-benchmark-scripts                    \
+  -v /localdata/ai-datasets/imagenet:/localdata/ai-datasets/imagenet    \
+  graphcore/tensorflow:1-amd-2.0.0					\
+  /bin/bash /gc-benchmark-scripts/scripts/tf-resnet50.sh /examples /localdata/ai-datasets/imagenet
